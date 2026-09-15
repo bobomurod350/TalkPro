@@ -2,11 +2,24 @@
 // ADMIN AUTHENTICATION
 // ===============================
 
-const adminToken = localStorage.getItem("talkproAdminToken");
+// ===============================
+// ADMIN AUTHENTICATION
+// ===============================
 
-if (adminToken !== "talkpro-admin-access") {
+const adminToken = localStorage.getItem("talkproAdminToken");
+const legacyAdmin = localStorage.getItem("talkproAdmin");
+
+if (
+    adminToken !== "talkpro-admin-access" &&
+    legacyAdmin !== "true"
+) {
     window.location.href = "login.html";
 }
+
+// ===============================
+// ONLINE BACKEND
+// ===============================
+
 const API_URL = "https://talkpro-production.up.railway.app";
 
 const studentsTable = document.getElementById("studentsTable");
