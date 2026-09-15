@@ -49,7 +49,7 @@ async function loadStudents() {
 
     try {
       const response = await fetch(
-    "http://localhost:3000/api/registrations"
+    `${API_URL}/api/registrations`
 );
         if (!response.ok) {
             throw new Error("Failed to load students");
