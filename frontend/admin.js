@@ -7,7 +7,7 @@ const adminToken = localStorage.getItem("talkproAdminToken");
 if (adminToken !== "talkpro-admin-access") {
     window.location.href = "login.html";
 }
-const API_URL = "http://localhost:3000";
+const API_URL = "https://talkpro-production.up.railway.app";
 
 const studentsTable = document.getElementById("studentsTable");
 const totalStudents = document.getElementById("totalStudents");
