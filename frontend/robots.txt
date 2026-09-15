@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bobomurod350.github.io/TalkPro/frontend/sitemap.xml
