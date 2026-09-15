@@ -1,180 +1,150 @@
-const loginCard =
-    document.querySelector(".login-card");
+// =================================
+// TALKPRO ADMIN LOGIN
+// =================================
 
-const usernameInput =
-    document.getElementById("username");
+const loginCard = document.querySelector(".login-card");
 
-const passwordInput =
-    document.getElementById("password");
+const usernameInput = document.getElementById("username");
 
-const loginForm =
-    document.getElementById("loginForm");
+const passwordInput = document.getElementById("password");
 
-const loginMessage =
-    document.getElementById("loginMessage");
+const loginForm = document.getElementById("loginForm");
 
+const loginMessage = document.getElementById("loginMessage");
 
-/* =================================
-   PARROT COLOR REACTION
-================================= */
+// =================================
+// USERNAME FOCUS
+// =================================
 
-usernameInput.addEventListener(
-    "focus",
-    () => {
+usernameInput.addEventListener("focus", () => {
+    loginCard.classList.remove("password-mode");
+    loginCard.classList.add("username-mode");
+});
 
-        loginCard.classList.remove(
-            "password-mode"
-        );
+// =================================
+// PASSWORD FOCUS
+// =================================
 
-        loginCard.classList.add(
-            "username-mode"
-        );
+passwordInput.addEventListener("focus", () => {
+    loginCard.classList.remove("username-mode");
+    loginCard.classList.add("password-mode");
+});
 
-    }
-);
+// =================================
+// SHOW / HIDE PASSWORD
+// =================================
 
+const passwordGroup = passwordInput.parentElement;
 
-passwordInput.addEventListener(
-    "focus",
-    () => {
-
-        loginCard.classList.remove(
-            "username-mode"
-        );
-
-        loginCard.classList.add(
-            "password-mode"
-        );
-
-    }
-);
-
-
-/* =================================
-   PASSWORD SHOW / HIDE
-================================= */
-
-const passwordGroup =
-    passwordInput.parentElement;
-
-const eyeButton =
-    document.createElement("button");
+const eyeButton = document.createElement("button");
 
 eyeButton.type = "button";
 
-eyeButton.className =
-    "password-eye";
+eyeButton.className = "password-eye";
 
 eyeButton.innerHTML = "👁️";
 
-eyeButton.title =
-    "Show password";
+eyeButton.title = "Show password";
 
-passwordGroup.appendChild(
-    eyeButton
-);
+passwordGroup.appendChild(eyeButton);
 
+eyeButton.addEventListener("click", () => {
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
 
-eyeButton.addEventListener(
-    "click",
-    () => {
+        eyeButton.innerHTML = "🙈";
 
-        if (
-            passwordInput.type ===
-            "password"
-        ) {
+        eyeButton.title = "Hide password";
+    } else {
+        passwordInput.type = "password";
 
-            passwordInput.type =
-                "text";
+        eyeButton.innerHTML = "👁️";
 
-            eyeButton.innerHTML =
-                "🙈";
-
-            eyeButton.title =
-                "Hide password";
-
-        } else {
-
-            passwordInput.type =
-                "password";
-
-            eyeButton.innerHTML =
-                "👁️";
-
-            eyeButton.title =
-                "Show password";
-        }
-
-        passwordInput.focus();
+        eyeButton.title = "Show password";
     }
-);
 
+    passwordInput.focus();
+});
 
-/* =================================
-   LOGIN
-================================= */
+// =================================
+// LOGIN
+// =================================
 
-loginForm.addEventListener(
-    "submit",
-    (event) => {
+loginForm.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-        event.preventDefault();
+    const username = usernameInput.value.trim();
 
-        const username =
-            usernameInput.value.trim();
+    const password = passwordInput.value;
 
-        const password =
-            passwordInput.value;
+    loginMessage.innerHTML = "";
 
-        loginMessage.innerHTML = "";
+    // =================================
+    // CHECK ADMIN LOGIN
+    // =================================
 
+    if (
+        username === "admin" &&
+        password === "TalkPro123"
+    ) {
 
-        if (
-            username === "admin" &&
-            password === "TalkPro123"
-        ) {
+        // =================================
+        // SAVE BOTH ADMIN TOKENS
+        // =================================
 
-            localStorage.setItem(
-                "talkproAdmin",
-                "true"
-            );
+        localStorage.setItem(
+            "talkproAdminToken",
+            "talkpro-admin-access"
+        );
 
+        localStorage.setItem(
+            "talkproAdmin",
+            "true"
+        );
 
-            const button =
-                loginForm.querySelector(
-                    ".login-button"
-                );
+        // =================================
+        // BUTTON SUCCESS
+        // =================================
 
+        const button =
+            loginForm.querySelector(".login-button");
 
-            button.innerHTML =
-                "Signing in... ✓";
+        if (button) {
+            button.innerHTML = "Signing in... ✓";
 
-            button.style.pointerEvents =
-                "none";
+            button.disabled = true;
 
+            button.style.pointerEvents = "none";
 
             button.style.background =
                 "linear-gradient(135deg, #16a085, #43e324)";
-
-
-            setTimeout(() => {
-
-                window.location.href =
-                    "admin.html";
-
-            }, 800);
-
-
-        } else {
-
-            loginMessage.innerHTML = `
-                <div class="error-message">
-                    Incorrect username or password.
-                </div>
-            `;
-
-            passwordInput.focus();
         }
 
+        // =================================
+        // OPEN ADMIN PANEL
+        // =================================
+
+        setTimeout(() => {
+
+            window.location.href = "admin.html";
+
+        }, 500);
+
+    } else {
+
+        // =================================
+        // WRONG LOGIN
+        // =================================
+
+        loginMessage.innerHTML = `
+            <div class="error-message">
+                Incorrect username or password.
+            </div>
+        `;
+
+        passwordInput.value = "";
+
+        passwordInput.focus();
+
     }
-);
+});
