@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>TalkPro — Admin Login</title>
+
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <main class="login-page">
+
+
+<div class="login-card">
+
+    <div class="login-logo">
+
+        <img
+            src="logo.png"
+            alt="TalkPro Logo"
+        >
+
+    </div>
+
+    <div class="login-heading">
+
+        <span>ADMINISTRATION</span>
+
+        <h1>Welcome Back</h1>
+
+        <p>
+            Sign in to manage your TalkPro
+            Language Center.
+        </p>
+
+    </div>
+                </p>
+
+            <form id="loginForm">
+
+                <div class="input-group">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Enter username"
+                        autocomplete="username"
+                        required
+                    >
+
+                </div>
+
+                <div class="input-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="login-button"
+                >
+                    Sign In →
+                </button>
+
+                <div id="loginMessage"></div>
+
+            </form>
+
+            <a
+                href="index.html"
+                class="back-link"
+            >
+                ← Back to TalkPro
+            </a>
+
+        </div>
+
+    </main>
+
+    <script src="login.js"></script>
+
+</body>
+
+</html>
